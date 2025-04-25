@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Login content -->
+    <div class="login-content">
+      <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="text" id="username" placeholder="Username" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+          <p id="errorMsg"></p>
+        </form>
+        <p class="signup-text">
+          Don’t have an account? <a href="signup.html">Sign up here</a>
+        </p>
+      </div>
+    </div>
+       <!-- Sidebar -->
+   <div class="sidebar">
+    <h1>Web Quiz</h1>
+    <div class="sidebar-icons">
+      <i class="fab fa-html5" title="HTML"></i>
+      <i class="fab fa-css3-alt" title="CSS"></i>
+      <i class="fab fa-js-square" title="JavaScript"></i>
+      <i class="fab fa-react" title="React"></i>
+      <i class="fab fa-php" title="PHP"></i>
+    </div>
+  </div>
+  </div>
+
+
+
+  <script src="login.js"></script>
+</body>
+</html>

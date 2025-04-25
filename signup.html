@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+
+
+    <!-- Sign up content -->
+    <div class="login-content">
+      <div class="login-container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+          <input type="text" id="newUsername" placeholder="Username" required />
+          <input type="email" id="newEmail" placeholder="Email" required />
+          <input type="password" id="newPassword" placeholder="Password" required />
+          <button type="submit">Create Account</button>
+          <p id="signupMsg"></p>
+        </form>
+        <p class="signup-text">
+          Already have an account? <a href="login.html">Login here</a>
+        </p>
+      </div>
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h1>Web Quiz</h1>
+        <div class="sidebar-icons">
+          <i class="fab fa-html5" title="HTML"></i>
+          <i class="fab fa-css3-alt" title="CSS"></i>
+          <i class="fab fa-js-square" title="JavaScript"></i>
+          <i class="fab fa-react" title="React"></i>
+          <i class="fab fa-php" title="PHP"></i>
+        </div>
+      </div>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("newUsername").value;
+      const email = document.getElementById("newEmail").value;
+      const password = document.getElementById("newPassword").value;
+      const msg = document.getElementById("signupMsg");
+
+      msg.style.color = "green";
+      msg.textContent = `Account for ${username} created!`;
+    });
+  </script>
+</body>
+</html>
