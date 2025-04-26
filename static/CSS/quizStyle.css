@@ -51,12 +51,18 @@ nav ul li a:hover {
     padding: 4px;
 }
 .QuizGroup {
-
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     gap: 10px;
-    justify-content: center; 
-}
+    justify-content: center;
+  }
+  
+  .QuizGroup img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+  
 h1 {
     text-align: center;
     margin-top: 2em;
@@ -114,3 +120,23 @@ footer address a:hover {
         font-size: 1.8em;
     }
 }
+#start-quiz {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  .start-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .start-btn:hover {
+    background-color: #0056b3;
+  }
