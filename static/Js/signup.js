@@ -1,10 +1,27 @@
-document.getElementById("signupForm").addEventListener("submit", function(e) {
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const username = document.getElementById("newUsername").value;
-    const email = document.getElementById("newEmail").value;
-    const password = document.getElementById("newPassword").value;
-    const msg = document.getElementById("signupMsg");
+    const newUsername = document.getElementById('newUsername').value;
+    const newEmail = document.getElementById('newEmail').value;
+    const newPassword = document.getElementById('newPassword').value;
 
-    msg.style.color = "green";
-    msg.textContent = `Account for ${username} created!`;});
+    const response = await fetch('../PHP/signup.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: newUsername, email: newEmail, password: newPassword })
+    });
+
+    const data = await response.json();
+    const signupMsg = document.getElementById('signupMsg');
+
+    if (data.status === 'success') {
+        signupMsg.style.color = 'green';
+        signupMsg.innerText = data.message;
+        setTimeout(() => {
+            window.location.href = 'login.html'; // Redirect to login page after 2 sec
+        }, 2000);
+    } else {
+        signupMsg.style.color = 'red';
+        signupMsg.innerText = data.message;
+    }
+});

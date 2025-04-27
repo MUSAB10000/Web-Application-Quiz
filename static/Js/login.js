@@ -1,16 +1,26 @@
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-  
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const errorMsg = document.getElementById("errorMsg");
-  
-    // Demo check (you can change to PHP backend later)
-    if (username === "admin" && password === "1234") {
-      alert("Login successful!");
-      window.location.href = "dashboard.html"; // redirect if correct
-    } else {
-      errorMsg.textContent = "Invalid username or password!";
-    }
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  const response = await fetch('../PHP/login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username, password: password })
   });
-  
+
+  const data = await response.json();
+  const errorMsg = document.getElementById('errorMsg');
+
+  if (data.status === 'success') {
+      errorMsg.style.color = 'green';
+      errorMsg.innerText = data.message;
+      setTimeout(() => {
+          window.location.href = 'quizz.html'; // Redirect to quiz page after 2 sec
+      }, 1000);
+  } else {
+      errorMsg.style.color = 'red';
+      errorMsg.innerText = data.message;
+  }
+});
