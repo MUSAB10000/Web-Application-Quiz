@@ -80,7 +80,7 @@ function checkAnswer() {
 
   const selectedIndex = parseInt(selected.value);
   if (selectedIndex === questions[currentQuestion].correct) {
-    correctAnswers++;  // ✅ Increment correct answers here!!
+    correctAnswers++;
     document.getElementById('resultMsg').textContent = "✅ Correct!";
     document.getElementById('resultMsg').className = "correct";
   } else {
@@ -100,6 +100,21 @@ function checkAnswer() {
   }, 2000);
 }
 
+function skipQuestion() {
+  // No point added
+  const options = document.querySelectorAll('input[name="option"]');
+  options.forEach(opt => opt.disabled = true);
+
+  document.getElementById('resultMsg').textContent = "⏳ Time's up!";
+  document.getElementById('resultMsg').className = "wrong";
+
+  document.getElementById('submitBtn').classList.add('hidden');
+  document.getElementById('nextBtn').classList.remove('hidden');
+
+  setTimeout(() => {
+    nextQuestion();
+  }, 2000);
+}
 
 function nextQuestion() {
   if (currentQuestion < questions.length - 1) {
@@ -121,7 +136,7 @@ function startTimer() {
     document.getElementById('timer').textContent = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
     if (timeLeft === 0) {
       clearInterval(timer);
-      checkAnswer();
+      skipQuestion(); // Move to next question automatically if time runs out
     }
   }, 1000);
 }
@@ -134,4 +149,5 @@ function resetTimer() {
 document.getElementById('submitBtn').addEventListener('click', checkAnswer);
 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
 
+// Initialize the quiz
 loadQuestions();
