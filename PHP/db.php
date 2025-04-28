@@ -1,4 +1,5 @@
 <?php
+// deatils of database
 $host = 'localhost'; 
 $db   = 'Quiz';  
 $user = 'postgres';  

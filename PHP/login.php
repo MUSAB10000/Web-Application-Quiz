@@ -1,6 +1,10 @@
 <?php
 require 'db.php';
-
+/* how the code works 
+It receives JSON data (username and password) from the frontend, 
+queries the users table, checks the password using password_verify(), 
+ and returns a JSON response that now includes the user ID.
+*/
 // Get the JSON data from frontend
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -13,11 +17,24 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password_hash'])) {
-        echo json_encode(['status' => 'success', 'message' => 'Login successful.']);
+        // when login is successful
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Login successful.',
+            'user_id' => $user['id'],      // <-- very important to send user_id
+            'username' => $user['username'] // (optional) you can save username too if needed
+        ]);
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid username or password.']);
+        //  when login is not successful
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Invalid username or password.'
+        ]);
     }
 } catch (PDOException $e) {
-    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+    echo json_encode([
+        'status' => 'error',
+        'message' => $e->getMessage()
+    ]);
 }
 ?>

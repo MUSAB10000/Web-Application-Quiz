@@ -14,31 +14,27 @@
 
   <main class="quiz-container">
     <section class="quiz-box">
-      <h2>What does HTML stand for?</h2>
-      <div class="options">
-        <label><input type="radio" name="q1"> A. Hyper Text Markup Language</label>
-        <label><input type="radio" name="q1"> B. HighText Machine Language</label>
-        <label><input type="radio" name="q1"> C. Hyper Tabular Markup Language</label>
-        <label><input type="radio" name="q1"> D. None of these</label>
+      <h2 id="questionText">Loading question...</h2>
+      <div class="options" id="optionsContainer">
       </div>
-      <button class="submit-btn">Submit Answer</button>
+      <button class="submit-btn" id="submitBtn">Submit Answer</button>
+      <button class="submit-btn" id="nextBtn">Next Question</button>
+      <p id="resultMsg"></p>
     </section>
 
     <aside class="sidebar">
       <div class="timer">
         <span>⏳</span>
-        <h3>00:30</h3>
+        <h3 id="timer">00:30</h3>
         <p>Timer Remaining</p>
       </div>
-      <ul class="question-list">
-        <li class="active">Question 1</li>
-        <li>Question 2</li>
-        <li>Question 3</li>
-        <li>Question 4</li>
-        <li>Question 5</li>
+      <ul class="question-list" id="questionList">
+        <!-- Question numbers will be loaded -->
       </ul>
     </aside>
   </main>
+
+  <script src="../static/Js/questions-html.js"></script>
 
 </body>
 </html>

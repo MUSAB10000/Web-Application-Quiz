@@ -1,26 +1,30 @@
-document.getElementById('loginForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+    try {
+        const response = await fetch('../PHP/login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
 
-  const response = await fetch('../PHP/login.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username, password: password })
-  });
+        const data = await response.json();
 
-  const data = await response.json();
-  const errorMsg = document.getElementById('errorMsg');
+        if (data.status === 'success') {
+            // ✅ Save user_id in localStorage
+            localStorage.setItem('user_id', data.user_id);
+            localStorage.setItem('username', data.username); // (optional if you want to show username later)
 
-  if (data.status === 'success') {
-      errorMsg.style.color = 'green';
-      errorMsg.innerText = data.message;
-      setTimeout(() => {
-          window.location.href = 'quizz.html'; // Redirect to quiz page after 2 sec
-      }, 1000);
-  } else {
-      errorMsg.style.color = 'red';
-      errorMsg.innerText = data.message;
-  }
+            window.location.href = 'chooseQuiz.html'; // redirect to main page
+        } else {
+            document.getElementById('errorMsg').textContent = data.message;
+        }
+    } catch (error) {
+        console.error(error);
+        document.getElementById('errorMsg').textContent = "An error occurred during login.";
+    }
 });

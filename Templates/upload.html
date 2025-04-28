@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Quiz Questions</title>
+</head>
+<body>
+  <h1>Upload Questions CSV</h1>
+  <form action="../PHP/upload_questions.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="csv_file" accept=".csv" required>
+    <button type="submit">Upload</button>
+  </form>
+</body>
+</html>

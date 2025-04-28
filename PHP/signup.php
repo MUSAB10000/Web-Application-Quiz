@@ -1,6 +1,6 @@
 <?php
 require 'db.php';
-
+// same as login.php but with save data in database but login check it in database
 // Get the JSON data from frontend
 $data = json_decode(file_get_contents("php://input"), true);
 
