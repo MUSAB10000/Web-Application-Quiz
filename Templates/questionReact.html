@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuizzyPop - CSS Quiz</title>
+  <link rel="stylesheet" href="../static/CSS/quiz.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1>QuizzyPop</h1>
+  </header>
+
+  <main class="quiz-container">
+    <section class="quiz-box">
+      <h2 id="questionText">Loading question...</h2>
+      <div class="options" id="optionsContainer">
+        <!-- Options will load here -->
+      </div>
+      <button class="submit-btn" id="submitBtn">Submit Answer</button>
+      <button class="submit-btn hidden" id="nextBtn">Next Question</button>
+      <p id="resultMsg"></p>
+    </section>
+
+    <aside class="sidebar">
+      <div class="timer">
+        <span>⏳</span>
+        <h3 id="timer">00:30</h3>
+        <p>Timer Remaining</p>
+      </div>
+      <ul class="question-list" id="questionList">
+        <!-- Questions list will load here -->
+      </ul>
+    </aside>
+  </main>
+
+  <script src="../static/Js/questions-react.js"></script>
+</body>
+</html>
