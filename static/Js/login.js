@@ -1,30 +1,40 @@
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
+/*
+ * login.js – handles the login form, saves user_id + username
+ *            so other pages (profile, save_result) know who is logged-in
+ */
+document.getElementById('loginForm')
+        .addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    try {
-        const response = await fetch('../PHP/login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
 
-        const data = await response.json();
+  try {
+    const res  = await fetch('../PHP/login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:   JSON.stringify({ username, password }),
+      credentials: 'include'          // ✅ store / receive PHP-session cookie
+    });
 
-        if (data.status === 'success') {
-            // ✅ Save user_id in localStorage
-            localStorage.setItem('user_id', data.user_id);
-            localStorage.setItem('username', data.username); // (optional if you want to show username later)
+    const data = await res.json();
 
-            window.location.href = 'chooseQuiz.html'; // redirect to main page
-        } else {
-            document.getElementById('errorMsg').textContent = data.message;
-        }
-    } catch (error) {
-        console.error(error);
-        document.getElementById('errorMsg').textContent = "An error occurred during login.";
+    if (data.status === 'success') {
+
+      /* Save identity in localStorage so any page / JS can use it */
+      localStorage.setItem('user_id',  data.user_id);
+      localStorage.setItem('username', data.username);
+
+      // Go to quiz-selection page
+      window.location.href = 'chooseQuiz.html';
+
+    } else {
+      document.getElementById('errorMsg').textContent = data.message;
     }
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById('errorMsg').textContent =
+      'An unexpected error occurred. Please try again.';
+  }
 });

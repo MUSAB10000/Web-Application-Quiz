@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile</title>
+  <link rel="stylesheet" href="../static/CSS/chooseQuiz.css" /> <!-- Reuse same style -->
+  <style>
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 1.5em;
+      color: #000;
+    }
+
+    .info-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .info-card p {
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    th {
+      background: #0d6efd;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li id="profile"><a href="profile.html"><img src="../static/images/profile.svg" alt="Profile"></a></li>
+        <div class="QuizGroup">
+          <li><a href="#"><img src="../static/images/html.gif" alt="HTML"></a></li>
+          <li><a href="#"><img src="../static/images/css.gif" alt="CSS"></a></li>
+          <li><a href="#"><img src="../static/images/javascript.gif" alt="JavaScript"></a></li>
+          <li><a href="#"><img src="../static/images/react.gif" alt="React"></a></li>
+        </div>
+        <li id="Logout"><a href="login.html"><img src="../static/images/logout.svg" alt="Logout"></a></li>
+      </ul>
+    </nav>
+    <h1>My Profile</h1>
+  </header>
+
+  <main>
+    <!-- user basic info -->
+    <section class="info-card" id="basicInfo">
+      <!-- Filled by JS -->
+    </section>
+
+    <!-- quiz history -->
+    <section>
+      <h2 style="text-align:center;margin-bottom:1rem">Previous Quiz Attempts</h2>
+      <div style="overflow-x:auto;">
+        <table id="historyTbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Quiz</th>
+              <th>Score</th>
+              <th>Taken On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ziyad and Mussab Alabdullatf. All Rights Reserved.</p>
+  </footer>
+
+  <script src="../static/Js/profile.js"></script>
+</body>
+</html>
