@@ -1,0 +1,6 @@
+Array
+(
+    [user_id] => 3
+    [quiz_id] => 4
+    [score] => 0
+)

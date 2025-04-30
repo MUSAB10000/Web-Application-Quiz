@@ -26,14 +26,14 @@ try {
 
     /* ---------- quiz history ---------- */
     $histSQL = "
-        SELECT q.name AS quiz,
-               r.score,
-               TO_CHAR(r.created_at, 'YYYY-MM-DD HH24:MI') AS taken_at
-        FROM   results r
-        JOIN   quizzes q ON q.id = r.quiz_id
-        WHERE  r.user_id = :uid
-        ORDER  BY r.created_at DESC
-    ";
+    SELECT q.name AS quiz,
+           r.score,
+           DATE_FORMAT(r.created_at, '%Y-%m-%d %H:%i') AS taken_at
+    FROM   results r
+    JOIN   quizzes q ON q.id = r.quiz_id
+    WHERE  r.user_id = :uid
+    ORDER  BY r.created_at DESC
+";
     $histStmt = $pdo->prepare($histSQL);
     $histStmt->execute(['uid'=>$user_id]);
     $history = $histStmt->fetchAll(PDO::FETCH_ASSOC);

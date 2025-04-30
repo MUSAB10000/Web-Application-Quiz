@@ -10,7 +10,7 @@ try {
         SELECT id, question_text, choice_a, choice_b, choice_c, choice_d, correct_choice 
         FROM questions 
         WHERE quiz_name = :quiz_name 
-        ORDER BY random()
+        ORDER BY RAND()
         LIMIT 5
     ");
     $stmt->execute(['quiz_name' => $quiz_name]);
